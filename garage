@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MécanAuto — Trouvez votre garagiste de confiance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0D1B2A;
+    --teal: #1A7F6E;
+    --teal-light: #E8F5F2;
+    --teal-mid: #2DB89E;
+    --accent: #F0A500;
+    --text: #1C2B39;
+    --muted: #5C7080;
+    --border: #E4ECF0;
+    --bg: #F7FAFB;
+    --white: #FFFFFF;
+    --radius: 14px;
+    --shadow: 0 4px 24px rgba(13,27,42,0.09);
+    --shadow-hover: 0 8px 36px rgba(13,27,42,0.15);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5vw;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 22px;
+    color: var(--navy);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: var(--teal);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-icon svg { width: 20px; height: 20px; fill: white; }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a {
+    text-decoration: none; font-size: 15px; font-weight: 400;
+    color: var(--muted); transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-cta {
+    background: var(--teal); color: white !important;
+    padding: 9px 20px; border-radius: 8px; font-weight: 500;
+    transition: background .2s !important;
+  }
+  .nav-cta:hover { background: #15685A !important; }
+
+  /* HERO */
+  .hero {
+    background: var(--navy);
+    padding: 80px 5vw 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(26,127,110,0.22) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(45,184,158,0.15);
+    color: var(--teal-mid);
+    border: 1px solid rgba(45,184,158,0.3);
+    padding: 5px 14px; border-radius: 100px;
+    font-size: 13px; font-weight: 500; margin-bottom: 24px;
+  }
+  .hero-badge span { width: 6px; height: 6px; background: var(--teal-mid); border-radius: 50%; }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(34px, 4.5vw, 56px);
+    font-weight: 800;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .hero h1 em { color: var(--teal-mid); font-style: normal; }
+  .hero p {
+    color: rgba(255,255,255,0.65);
+    font-size: 17px; font-weight: 300;
+    margin-bottom: 40px;
+  }
+  .search-box {
+    background: white;
+    border-radius: var(--radius);
+    padding: 8px;
+    display: flex; gap: 8px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .search-field {
+    flex: 1; display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px;
+    background: var(--bg); border-radius: 9px;
+  }
+  .search-field svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .search-field input {
+    border: none; background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; color: var(--text);
+    outline: none; width: 100%;
+  }
+  .search-field input::placeholder { color: var(--muted); }
+  .search-divider { width: 1px; background: var(--border); margin: 8px 0; }
+  .search-btn {
+    background: var(--teal); color: white;
+    border: none; border-radius: 9px;
+    padding: 12px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 500;
+    cursor: pointer; transition: background .2s, transform .1s;
+    white-space: nowrap;
+  }
+  .search-btn:hover { background: #15685A; }
+  .search-btn:active { transform: scale(.98); }
+  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
+  .hero-tag {
+    color: rgba(255,255,255,0.55);
+    font-size: 13px; cursor: pointer;
+    padding: 4px 12px; border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px; transition: all .2s;
+  }
+  .hero-tag:hover { color: white; border-color: rgba(255,255,255,0.4); }
+  .hero-right { position: relative; }
+  .hero-stats {
+    display: flex; gap: 0; background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+  .stat-item {
+    flex: 1; padding: 24px;
+    border-right: 1px solid rgba(255,255,255,0.12);
+    text-align: center;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 30px; font-weight: 800;
+    color: white; display: block;
+  }
+  .stat-label { color: rgba(255,255,255,0.5); font-size: 13px; }
+  .hero-visual {
+    margin-top: 32px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius) var(--radius) 0 0;
+    padding: 20px;
+    position: relative;
+  }
+  .mini-card {
+    background: white; border-radius: 10px;
+    padding: 14px 16px;
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 10px;
+    animation: float 3s ease-in-out infinite;
+  }
+  .mini-card:nth-child(2) { animation-delay: -1.5s; }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+  .mini-avatar {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: var(--teal-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .mini-info { flex: 1; }
+  .mini-name { font-weight: 500; font-size: 14px; color: var(--text); }
+  .mini-sub { font-size: 12px; color: var(--muted); }
+  .mini-badge {
+    background: var(--teal-light); color: var(--teal);
+    font-size: 11px; font-weight: 500;
+    padding: 3px 8px; border-radius: 100px;
+  }
+  .stars { color: var(--accent); font-size: 13px; }
+
+  /* BRANDS */
+  .brands {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 5vw;
+    background: var(--bg);
+    display: flex; align-items: center; justify-content: center; gap: 48px;
+    flex-wrap: wrap;
+  }
+  .brands-label { font-size: 13px; color: var(--muted); }
+  .brand-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 15px;
+    color: #B0C4CC; letter-spacing: 0.5px;
+  }
+
+  /* SECTIONS */
+  section { padding: 80px 5vw; }
+  .section-label {
+    font-size: 12px; font-weight: 500; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 700; color: var(--navy); line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .section-sub { font-size: 17px; color: var(--muted); max-width: 560px; }
+  .section-header { margin-bottom: 56px; }
+
+  /* HOW IT WORKS */
+  .how { background: var(--bg); }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .step {
+    position: relative;
+    background: white; border-radius: var(--radius);
+    padding: 36px 28px;
+    border: 1px solid var(--border);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .step:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+  .step-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 64px; font-weight: 800;
+    color: var(--teal-light);
+    line-height: 1; margin-bottom: 8px;
+  }
+  .step-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: var(--teal-light);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px; font-size: 24px;
+  }
+  .step h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 19px; font-weight: 700;
+    color: var(--navy); margin-bottom: 10px;
+  }
+  .step p { font-size: 15px; color: var(--muted); line-height: 1.6; }
+  .step-arrow {
+    position: absolute; right: -20px; top: 50%;
+    transform: translateY(-50%);
+    width: 40px; height: 40px; border-radius: 50%;
+    background: white; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--teal); font-size: 18px; z-index: 2;
+  }
+  .step:last-child .step-arrow { display: none; }
+
+  /* GARAGES */
+  .garages-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; }
+  .garages-header .section-header { margin-bottom: 0; }
+  .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+  .filter-btn {
+    padding: 8px 18px; border-radius: 100px;
+    border: 1.5px solid var(--border);
+    background: white; color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; cursor: pointer;
+    transition: all .2s;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    border-color: var(--teal); color: var(--teal);
+    background: var(--teal-light);
+  }
+  .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .garage-card {
+    background: white; border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+    cursor: pointer;
+  }
+  .garage-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+  .card-img {
+    height: 180px;
+    background: linear-gradient(135deg, #1A7F6E 0%, #0D5246 100%);
+    position: relative; display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .card-img-2 { background: linear-gradient(135deg, #1B3A5C 0%, #0D2640 100%); }
+  .card-img-3 { background: linear-gradient(135deg, #4A3728 0%, #2C1F16 100%); }
+  .card-img-4 { background: linear-gradient(135deg, #1F5C3A 0%, #0F3320 100%); }
+  .card-img-5 { background: linear-gradient(135deg, #3D1F5C 0%, #220D3A 100%); }
+  .card-img-6 { background: linear-gradient(135deg, #5C3A1A 0%, #3A200A 100%); }
+  .card-img-icon { font-size: 48px; opacity: 0.25; }
+  .card-badge {
+    position: absolute; top: 14px; left: 14px;
+    background: white; color: var(--teal);
+    font-size: 12px; font-weight: 600;
+    padding: 4px 10px; border-radius: 100px;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .card-badge-dot { width: 6px; height: 6px; background: var(--teal); border-radius: 50%; }
+  .card-fav {
+    position: absolute; top: 14px; right: 14px;
+    background: rgba(255,255,255,0.9); width: 34px; height: 34px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 15px; cursor: pointer;
+  }
+  .card-body { padding: 20px; }
+  .card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; }
+  .card-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px; font-weight: 700; color: var(--navy);
+  }
+  .card-rating {
+    display: flex; align-items: center; gap: 5px;
+    background: #FFF8E6; border-radius: 8px;
+    padding: 4px 10px;
+  }
+  .card-rating .star { color: var(--accent); font-size: 14px; }
+  .card-rating .num { font-weight: 600; font-size: 14px; color: var(--text); }
+  .card-rating .count { font-size: 12px; color: var(--muted); }
+  .card-location { font-size: 13px; color: var(--muted); margin-bottom: 14px; display: flex; align-items: center; gap: 5px; }
+  .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+  .card-tag {
+    font-size: 12px; color: var(--teal);
+    background: var(--teal-light);
+    padding: 3px 10px; border-radius: 100px;
+  }
+  .card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--border); padding-top: 14px;
+  }
+  .card-price { font-size: 13px; color: var(--muted); }
+  .card-price strong { color: var(--text); font-size: 15px; }
+  .card-cta {
+    background: var(--navy); color: white;
+    border: none; border-radius: 8px;
+    padding: 9px 18px; font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    transition: background .2s;
+  }
+  .card-cta:hover { background: var(--teal); }
+  .view-more {
+    text-align: center; margin-top: 40px;
+  }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1.5px solid var(--navy); color: var(--navy);
+    background: transparent; border-radius: 10px;
+    padding: 13px 28px; font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 500; cursor: pointer;
+    text-decoration: none; transition: all .2s;
+  }
+  .btn-outline:hover { background: var(--navy); color: white; }
+
+  /* TRUST */
+  .trust {
+    background: var(--navy);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center;
+  }
+  .trust .section-title { color: white; }
+  .trust .section-sub { color: rgba(255,255,255,0.55); }
+  .trust-points { list-style: none; margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+  .trust-point {
+    display: flex; align-items: flex-start; gap: 14px;
+    color: rgba(255,255,255,0.75); font-size: 15px;
+  }
+  .trust-check {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--teal); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+  }
+  .trust-check svg { width: 13px; height: 13px; fill: white; }
+  .reviews-stack { display: flex; flex-direction: column; gap: 16px; }
+  .review-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius); padding: 22px;
+  }
+  .review-stars { color: var(--accent); font-size: 15px; margin-bottom: 12px; }
+  .review-text { color: rgba(255,255,255,0.8); font-size: 15px; line-height: 1.6; margin-bottom: 16px; font-style: italic; }
+  .review-author { display: flex; align-items: center; gap: 12px; }
+  .review-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--teal); display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px; color: white;
+  }
+  .review-name { font-weight: 500; font-size: 14px; color: white; }
+  .review-meta { font-size: 12px; color: rgba(255,255,255,0.4); }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .service-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 28px 22px;
+    text-align: center; cursor: pointer;
+    transition: all .2s;
+  }
+  .service-card:hover { border-color: var(--teal); background: var(--teal-light); transform: translateY(-3px); }
+  .service-icon { font-size: 36px; margin-bottom: 14px; }
+  .service-name { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 15px; color: var(--navy); margin-bottom: 6px; }
+  .service-count { font-size: 13px; color: var(--muted); }
+
+  /* CTA BAND */
+  .cta-band {
+    background: linear-gradient(135deg, var(--teal) 0%, #0F5A4A 100%);
+    padding: 70px 5vw; text-align: center;
+  }
+  .cta-band h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 800; color: white; margin-bottom: 16px;
+  }
+  .cta-band p { color: rgba(255,255,255,0.7); font-size: 17px; margin-bottom: 36px; }
+  .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-white {
+    background: white; color: var(--teal);
+    border: none; border-radius: 10px;
+    padding: 14px 32px; font-family: 'DM Sans', sans-serif;
+    font-size: 16px; font-weight: 600; cursor: pointer;
+    transition: all .2s; text-decoration: none;
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+  .btn-ghost-white {
+    background: transparent; color: white;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 10px; padding: 14px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px; font-weight: 500; cursor: pointer;
+    transition: all .2s; text-decoration: none;
+  }
+  .btn-ghost-white:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy); padding: 60px 5vw 32px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px; margin-bottom: 48px;
+  }
+  .footer-brand .logo { color: white; margin-bottom: 14px; display: inline-flex; }
+  .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 260px; }
+  .footer-col h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px; font-weight: 600;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .footer-col a {
+    display: block; text-decoration: none;
+    font-size: 14px; color: rgba(255,255,255,0.6);
+    margin-bottom: 10px; transition: color .2s;
+  }
+  .footer-col a:hover { color: var(--teal-mid); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-copy { font-size: 13px; color: rgba(255,255,255,0.3); }
+  .footer-socials { display: flex; gap: 12px; }
+  .social-btn {
+    width: 36px; height: 36px; border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: transparent;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all .2s; font-size: 15px;
+  }
+  .social-btn:hover { border-color: var(--teal-mid); background: rgba(45,184,158,0.1); }
+
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .steps { grid-template-columns: 1fr; }
+    .cards-grid { grid-template-columns: 1fr 1fr; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .trust { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    nav .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .search-box { flex-direction: column; }
+    .search-divider { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+      </svg>
+    </div>
+    MécanAuto
+  </a>
+  <div class="nav-links">
+    <a href="#">Trouver un garage</a>
+    <a href="#">Comment ça marche</a>
+    <a href="#">Pour les pros</a>
+    <a href="#" class="nav-cta">Prendre RDV</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge"><span></span> +1 200 garages référencés en France</div>
+      <h1>Votre mécanicien<br>de confiance, <em>près de vous</em></h1>
+      <p>Comparez les garages, lisez les avis clients vérifiés<br>et prenez rendez-vous en quelques clics.</p>
+      <div class="search-box">
+        <div class="search-field">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1A7F6E" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" placeholder="Vidange, freins, courroie...">
+        </div>
+        <div class="search-divider"></div>
+        <div class="search-field">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1A7F6E" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <input type="text" placeholder="Bordeaux, Médoc...">
+        </div>
+        <button class="search-btn">Rechercher</button>
+      </div>
+      <div class="hero-tags">
+        <span>Recherches populaires :</span>
+        <span class="hero-tag">Vidange</span>
+        <span class="hero-tag">Climatisation</span>
+        <span class="hero-tag">Contrôle technique</span>
+        <span class="hero-tag">Freins</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">1 200+</span>
+          <span class="stat-label">Garages</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">98%</span>
+          <span class="stat-label">Clients satisfaits</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">4.8★</span>
+          <span class="stat-label">Note moyenne</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="mini-card">
+          <div class="mini-avatar">🔧</div>
+          <div class="mini-info">
+            <div class="mini-name">Garage Auto BK</div>
+            <div class="mini-sub">Cussac-Fort-Médoc · Mécanicien mobile</div>
+            <div class="stars">★★★★★</div>
+          </div>
+          <span class="mini-badge">Disponible</span>
+        </div>
+        <div class="mini-card">
+          <div class="mini-avatar">🚗</div>
+          <div class="mini-info">
+            <div class="mini-name">Garage du Médoc</div>
+            <div class="mini-sub">Lesparre · Toutes marques</div>
+            <div class="stars">★★★★☆</div>
+          </div>
+          <span class="mini-badge">Dispo demain</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BRANDS -->
+<div class="brands">
+  <span class="brands-label">Marques prises en charge</span>
+  <span class="brand-logo">RENAULT</span>
+  <span class="brand-logo">PEUGEOT</span>
+  <span class="brand-logo">CITROËN</span>
+  <span class="brand-logo">VOLKSWAGEN</span>
+  <span class="brand-logo">FIAT</span>
+  <span class="brand-logo">FORD</span>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="section-header" style="text-align:center; max-width:600px; margin: 0 auto 56px;">
+    <div class="section-label">Simple & rapide</div>
+    <div class="section-title">Réservez en 3 étapes</div>
+    <p class="section-sub" style="margin: 0 auto;">Fini les mauvaises surprises — devis clair, tarif garanti, avis vérifiés.</p>
+  </div>
+  <div class="steps" style="max-width:1100px; margin: 0 auto;">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-icon">🔍</div>
+      <h3>Recherchez</h3>
+      <p>Indiquez votre prestation et votre ville. Comparez les garages disponibles près de chez vous en temps réel.</p>
+      <div class="step-arrow">→</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-icon">📋</div>
+      <h3>Comparez</h3>
+      <p>Consultez les tarifs, les avis clients vérifiés et les disponibilités. Choisissez le garage qui vous convient.</p>
+      <div class="step-arrow">→</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-icon">✅</div>
+      <h3>Réservez</h3>
+      <p>Prenez rendez-vous en ligne gratuitement. Recevez une confirmation immédiate et un rappel avant votre RDV.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section style="background: white;">
+  <div style="max-width:1100px; margin: 0 auto;">
+    <div class="section-header" style="text-align:center;">
+      <div class="section-label">Toutes prestations</div>
+      <div class="section-title">Que recherchez-vous ?</div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🛢️</div>
+        <div class="service-name">Vidange & révision</div>
+        <div class="service-count">342 garages</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <div class="service-name">Freins</div>
+        <div class="service-count">289 garages</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">❄️</div>
+        <div class="service-name">Climatisation</div>
+        <div class="service-count">198 garages</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔋</div>
+        <div class="service-name">Batterie & électrique</div>
+        <div class="service-count">156 garages</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔩</div>
+        <div class="service-name">Distribution</div>
+        <div class="service-count">274 garages</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚗</div>
+        <div class="service-name">Pneus & géométrie</div>
+        <div class="service-count">312 garages</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔦</div>
+        <div class="service-name">Diagnostic</div>
+        <div class="service-count">401 garages</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📋</div>
+        <div class="service-name">Contrôle technique</div>
+        <div class="service-count">167 garages</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GARAGE CARDS -->
+<section style="background: var(--bg);">
+  <div style="max-width:1100px; margin: 0 auto;">
+    <div class="garages-header">
+      <div class="section-header">
+        <div class="section-label">À proximité</div>
+        <div class="section-title">Garages recommandés</div>
+      </div>
+      <a href="#" class="btn-outline" style="margin-bottom: 56px;">Voir tous les garages →</a>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active">Tous</button>
+      <button class="filter-btn">Mécaniciens mobiles</button>
+      <button class="filter-btn">Garages indépendants</button>
+      <button class="filter-btn">Toutes marques</button>
+      <button class="filter-btn">Disponible aujourd'hui</button>
+      <button class="filter-btn">Moins de 50€</button>
+    </div>
+    <div class="cards-grid">
+
+      <div class="garage-card">
+        <div class="card-img">
+          <div class="card-img-icon">🔧</div>
+          <div class="card-badge"><div class="card-badge-dot"></div> Disponible</div>
+          <div class="card-fav">♡</div>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <div class="card-name">Garage Auto BK</div>
+            <div class="card-rating">
+              <span class="star">★</span>
+              <span class="num">4.9</span>
+              <span class="count">(47)</span>
+            </div>
+          </div>
+          <div class="card-location">📍 Cussac-Fort-Médoc · ~0 km</div>
+          <div class="card-tags">
+            <span class="card-tag">Mobile</span>
+            <span class="card-tag">Toutes marques</span>
+            <span class="card-tag">Devis gratuit</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">À partir de <strong>45 €</strong></div>
+            <button class="card-cta">Prendre RDV</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="garage-card">
+        <div class="card-img card-img-2">
+          <div class="card-img-icon">🚗</div>
+          <div class="card-badge"><div class="card-badge-dot"></div> Dispo demain</div>
+          <div class="card-fav">♡</div>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <div class="card-name">Garage du Médoc</div>
+            <div class="card-rating">
+              <span class="star">★</span>
+              <span class="num">4.7</span>
+              <span class="count">(83)</span>
+            </div>
+          </div>
+          <div class="card-location">📍 Lesparre-Médoc · ~12 km</div>
+          <div class="card-tags">
+            <span class="card-tag">Indépendant</span>
+            <span class="card-tag">Renault · Peugeot</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">À partir de <strong>55 €</strong></div>
+            <button class="card-cta">Prendre RDV</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="garage-card">
+        <div class="card-img card-img-3">
+          <div class="card-img-icon">⚙️</div>
+          <div class="card-badge"><div class="card-badge-dot"></div> Disponible</div>
+          <div class="card-fav">♡</div>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <div class="card-name">Auto Prest Gironde</div>
+            <div class="card-rating">
+              <span class="star">★</span>
+              <span class="num">4.6</span>
+              <span class="count">(61)</span>
+            </div>
+          </div>
+          <div class="card-location">📍 Pauillac · ~18 km</div>
+          <div class="card-tags">
+            <span class="card-tag">Carrosserie</span>
+            <span class="card-tag">Toutes marques</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">À partir de <strong>60 €</strong></div>
+            <button class="card-cta">Prendre RDV</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="garage-card">
+        <div class="card-img card-img-4">
+          <div class="card-img-icon">🔩</div>
+          <div class="card-badge"><div class="card-badge-dot"></div> Disponible</div>
+          <div class="card-fav">❤</div>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <div class="card-name">Méca Express 33</div>
+            <div class="card-rating">
+              <span class="star">★</span>
+              <span class="num">4.8</span>
+              <span class="count">(112)</span>
+            </div>
+          </div>
+          <div class="card-location">📍 Bordeaux · ~60 km</div>
+          <div class="card-tags">
+            <span class="card-tag">Mobile</span>
+            <span class="card-tag">Urgences</span>
+            <span class="card-tag">7j/7</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">À partir de <strong>50 €</strong></div>
+            <button class="card-cta">Prendre RDV</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="garage-card">
+        <div class="card-img card-img-5">
+          <div class="card-img-icon">🛠️</div>
+          <div class="card-badge"><div class="card-badge-dot"></div> Dispo cette semaine</div>
+          <div class="card-fav">♡</div>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <div class="card-name">Garage Central Saint-Laurent</div>
+            <div class="card-rating">
+              <span class="star">★</span>
+              <span class="num">4.5</span>
+              <span class="count">(38)</span>
+            </div>
+          </div>
+          <div class="card-location">📍 St-Laurent-Médoc · ~8 km</div>
+          <div class="card-tags">
+            <span class="card-tag">VW · Audi</span>
+            <span class="card-tag">Électrique</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">À partir de <strong>65 €</strong></div>
+            <button class="card-cta">Prendre RDV</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="garage-card">
+        <div class="card-img card-img-6">
+          <div class="card-img-icon">🚙</div>
+          <div class="card-badge"><div class="card-badge-dot"></div> Disponible</div>
+          <div class="card-fav">♡</div>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <div class="card-name">Atelier du Verdon</div>
+            <div class="card-rating">
+              <span class="star">★</span>
+              <span class="num">4.7</span>
+              <span class="count">(29)</span>
+            </div>
+          </div>
+          <div class="card-location">📍 Hourtin · ~25 km</div>
+          <div class="card-tags">
+            <span class="card-tag">Indépendant</span>
+            <span class="card-tag">Devis en ligne</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">À partir de <strong>48 €</strong></div>
+            <button class="card-cta">Prendre RDV</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="view-more">
+      <a href="#" class="btn-outline">Voir les 1 200+ garages →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST / REVIEWS -->
+<section class="trust">
+  <div style="max-width:1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; width: 100%;">
+    <div>
+      <div class="section-label" style="color: var(--teal-mid);">Pourquoi nous choisir</div>
+      <div class="section-title">La plateforme qui prend soin de votre voiture</div>
+      <p class="section-sub">Des avis 100% vérifiés, des prix transparents et un service sans engagement.</p>
+      <ul class="trust-points">
+        <li class="trust-point">
+          <div class="trust-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+          Avis clients vérifiés après chaque intervention
+        </li>
+        <li class="trust-point">
+          <div class="trust-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+          Tarifs affichés sans frais cachés
+        </li>
+        <li class="trust-point">
+          <div class="trust-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+          Prise de RDV en ligne 100% gratuite
+        </li>
+        <li class="trust-point">
+          <div class="trust-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+          Garages sélectionnés et contrôlés par nos équipes
+        </li>
+        <li class="trust-point">
+          <div class="trust-check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+          Service client disponible 6j/7
+        </li>
+      </ul>
+    </div>
+    <div class="reviews-stack">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"Intervention rapide à domicile, tarif très correct et Kevin est vraiment sérieux. Je recommande sans hésiter !"</div>
+        <div class="review-author">
+          <div class="review-avatar">ML</div>
+          <div>
+            <div class="review-name">Marie-Laure D.</div>
+            <div class="review-meta">Garage Auto BK · Vidange Peugeot 308</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"Grâce à MécanAuto, j'ai trouvé un mécanicien disponible le jour même. Freins changés en 2h, nickel."</div>
+        <div class="review-author">
+          <div class="review-avatar">JB</div>
+          <div>
+            <div class="review-name">Jean-Baptiste R.</div>
+            <div class="review-meta">Garage du Médoc · Changement freins</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Vous êtes garagiste ou mécanicien ?</h2>
+  <p>Rejoignez le réseau MécanAuto et développez votre clientèle localement. Inscription gratuite.</p>
+  <div class="cta-btns">
+    <a href="#" class="btn-white">Référencer mon garage</a>
+    <a href="#" class="btn-ghost-white">En savoir plus</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid" style="max-width:1100px; margin: 0 auto 48px;">
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+          </svg>
+        </div>
+        MécanAuto
+      </a>
+      <p>La plateforme française pour trouver un garagiste de confiance et réserver votre intervention en quelques clics.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Trouver</h4>
+      <a href="#">Vidange & révision</a>
+      <a href="#">Freins & pneumatiques</a>
+      <a href="#">Climatisation</a>
+      <a href="#">Courroie de distribution</a>
+      <a href="#">Diagnostic</a>
+    </div>
+    <div class="footer-col">
+      <h4>Régions</h4>
+      <a href="#">Bordeaux & Gironde</a>
+      <a href="#">Médoc</a>
+      <a href="#">Nouvelle-Aquitaine</a>
+      <a href="#">Île-de-France</a>
+      <a href="#">Toute la France</a>
+    </div>
+    <div class="footer-col">
+      <h4>MécanAuto</h4>
+      <a href="#">Comment ça marche</a>
+      <a href="#">Pour les pros</a>
+      <a href="#">Blog auto</a>
+      <a href="#">Nous contacter</a>
+      <a href="#">Mentions légales</a>
+    </div>
+  </div>
+  <div class="footer-bottom" style="max-width:1100px; margin: 0 auto;">
+    <span class="footer-copy">© 2025 MécanAuto — Tous droits réservés</span>
+    <div class="footer-socials">
+      <button class="social-btn">𝕏</button>
+      <button class="social-btn">in</button>
+      <button class="social-btn">f</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+  document.querySelectorAll('.card-fav').forEach(fav => {
+    fav.addEventListener('click', () => {
+      fav.textContent = fav.textContent === '♡' ? '❤' : '♡';
+    });
+  });
+  document.querySelectorAll('.hero-tag').forEach(tag => {
+    tag.addEventListener('click', () => {
+      document.querySelector('.search-field input').value = tag.textContent;
+    });
+  });
+</script>
+</body>
+</html>
