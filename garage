@@ -1,177 +1,187 @@
-<!-- ==========================
-VROOMLY-STYLE PRO VERSION (HTML + CSS + JS + API READY)
-========================== -->
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Comparateur Garage Pro</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garage Finder</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f3f4f6;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top right, #0f2a3a, #020617);
+  color: white;
+}
 
-    header {
-      background: #1e3a8a;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 60px;
+}
 
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 20px;
-    }
+.left {
+  max-width: 50%;
+}
 
-    .search-box {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+.badge {
+  background: rgba(0,255,200,0.1);
+  color: #2dd4bf;
+  padding: 8px 15px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
 
-    input, select {
-      padding: 10px;
-      flex: 1;
-      min-width: 150px;
-    }
+h1 {
+  font-size: 60px;
+  line-height: 1.1;
+}
 
-    button {
-      padding: 10px 15px;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-    }
+.highlight {
+  color: #2dd4bf;
+}
 
-    .btn-search {
-      background: #2563eb;
-      color: white;
-    }
+.subtitle {
+  color: #94a3b8;
+  margin-top: 20px;
+}
 
-    .card {
-      background: white;
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 15px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
+.search-box {
+  margin-top: 30px;
+  display: flex;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+}
 
-    .reserve {
-      background: #16a34a;
-      color: white;
-      margin-top: 10px;
-    }
+.search-box input {
+  border: none;
+  padding: 15px;
+  flex: 1;
+}
 
-    .rating {
-      color: #f59e0b;
-    }
-  </style>
+.search-box button {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  cursor: pointer;
+}
+
+.right {
+  width: 40%;
+}
+
+.stats {
+  display: flex;
+  gap: 10px;
+}
+
+.stat {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 15px;
+  flex: 1;
+  text-align: center;
+}
+
+.cards {
+  margin-top: 20px;
+}
+
+.card {
+  background: #e5e7eb;
+  color: black;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.available {
+  float: right;
+  background: #10b981;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+</style>
 </head>
-<body>
 
-<header>
-  <h1>Comparateur de garages</h1>
-  <p>Trouvez le meilleur prix près de chez vous</p>
-</header>
+<body>
 
 <div class="container">
 
-  <div class="search-box">
-    <input id="city" placeholder="Ville">
-    <select id="service">
-      <option value="">Tous services</option>
-      <option value="vidange">Vidange</option>
-      <option value="frein">Frein</option>
-      <option value="pneu">Pneu</option>
-    </select>
-    <button class="btn-search" onclick="search()">Rechercher</button>
+  <div class="left">
+    <div class="badge">+1200 garages référencés en France</div>
+
+    <h1>
+      Votre mécanicien<br>
+      de confiance,<br>
+      <span class="highlight">près de vous</span>
+    </h1>
+
+    <p class="subtitle">
+      Comparez les garages, lisez les avis clients vérifiés
+      et prenez rendez-vous en quelques clics.
+    </p>
+
+    <div class="search-box">
+      <input placeholder="Vidange, freins...">
+      <input placeholder="Ville">
+      <button onclick="search()">Rechercher</button>
+    </div>
   </div>
 
-  <div id="results"></div>
+  <div class="right">
+
+    <div class="stats">
+      <div class="stat">
+        <h2>1200+</h2>
+        <p>Garages</p>
+      </div>
+      <div class="stat">
+        <h2>98%</h2>
+        <p>Clients satisfaits</p>
+      </div>
+      <div class="stat">
+        <h2>4.8★</h2>
+        <p>Note moyenne</p>
+      </div>
+    </div>
+
+    <div class="cards" id="results"></div>
+
+  </div>
 
 </div>
 
 <script>
-  // Simulation API (remplaçable par backend réel)
-  async function fetchGarages() {
-    return [
-      { id: 1, name: "Garage Premium", city: "Bordeaux", service: "vidange", price: 79, rating: 4.5 },
-      { id: 2, name: "Auto Express", city: "Bordeaux", service: "frein", price: 120, rating: 4.2 },
-      { id: 3, name: "Top Garage", city: "Paris", service: "pneu", price: 60, rating: 4.8 }
-    ];
-  }
+const garages = [
+  { name: "Garage Auto BK", city: "Bordeaux", service: "vidange" },
+  { name: "Garage du Médoc", city: "Bordeaux", service: "frein" }
+];
 
-  async function search() {
-    const city = document.getElementById("city").value.toLowerCase();
-    const service = document.getElementById("service").value.toLowerCase();
+function search() {
+  const container = document.getElementById("results");
+  container.innerHTML = "";
 
-    const garages = await fetchGarages();
+  garages.forEach(g => {
+    const div = document.createElement("div");
+    div.className = "card";
 
-    const filtered = garages.filter(g =>
-      (!city || g.city.toLowerCase().includes(city)) &&
-      (!service || g.service.includes(service))
-    );
+    div.innerHTML = `
+      <strong>${g.name}</strong>
+      <span class="available">Disponible</span>
+      <p>${g.city} - ${g.service}</p>
+      ⭐⭐⭐⭐⭐
+    `;
 
-    displayResults(filtered);
-  }
-
-  function displayResults(data) {
-    const container = document.getElementById("results");
-    container.innerHTML = "";
-
-    if (data.length === 0) {
-      container.innerHTML = "<p>Aucun garage trouvé</p>";
-      return;
-    }
-
-    data.forEach(g => {
-      const div = document.createElement("div");
-      div.className = "card";
-
-      div.innerHTML = `
-        <h2>${g.name}</h2>
-        <p>📍 ${g.city}</p>
-        <p>🔧 ${g.service}</p>
-        <p>💰 ${g.price}€</p>
-        <p class="rating">⭐ ${g.rating}</p>
-        <button class="reserve" onclick="reserve(${g.id})">Réserver</button>
-      `;
-
-      container.appendChild(div);
-    });
-  }
-
-  function reserve(id) {
-    const date = prompt("Choisissez une date (YYYY-MM-DD)");
-    if (!date) return;
-
-    alert("Réservation confirmée !\nGarage ID: " + id + "\nDate: " + date);
-  }
+    container.appendChild(div);
+  });
+}
 </script>
 
 </body>
 </html>
-
-<!-- ==========================
-PRO NEXT STEPS
-========================== -->
-
-<!--
-Pour passer en VRAI business :
-
-1. Remplacer fetchGarages() par API réelle (Node.js / Firebase)
-2. Ajouter base de données (MongoDB)
-3. Ajouter Stripe pour paiement
-4. Ajouter comptes utilisateurs
-5. Héberger (Vercel / OVH)
-
--->
