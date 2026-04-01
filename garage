@@ -1,50 +1,58 @@
 <!-- ==========================
-SIMPLE VROOMLY-STYLE WEBSITE (HTML + CSS + JS)
+VROOMLY-STYLE PRO VERSION (HTML + CSS + JS + API READY)
 ========================== -->
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Comparateur Garage</title>
+  <title>Comparateur Garage Pro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      background: #f5f5f5;
+      background: #f3f4f6;
     }
 
     header {
-      background: #1e40af;
+      background: #1e3a8a;
       color: white;
       padding: 20px;
       text-align: center;
     }
 
     .container {
-      padding: 20px;
-      max-width: 800px;
+      max-width: 1000px;
       margin: auto;
+      padding: 20px;
     }
 
-    .search {
+    .search-box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       display: flex;
       gap: 10px;
-      margin-bottom: 20px;
+      flex-wrap: wrap;
     }
 
-    input {
+    input, select {
       padding: 10px;
       flex: 1;
+      min-width: 150px;
     }
 
     button {
       padding: 10px 15px;
       border: none;
       cursor: pointer;
+      border-radius: 5px;
     }
 
-    .search button {
+    .btn-search {
       background: #2563eb;
       color: white;
     }
@@ -53,8 +61,8 @@ SIMPLE VROOMLY-STYLE WEBSITE (HTML + CSS + JS)
       background: white;
       padding: 15px;
       border-radius: 10px;
-      margin-bottom: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-top: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     .reserve {
@@ -62,38 +70,55 @@ SIMPLE VROOMLY-STYLE WEBSITE (HTML + CSS + JS)
       color: white;
       margin-top: 10px;
     }
+
+    .rating {
+      color: #f59e0b;
+    }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>Comparez les garages</h1>
+  <h1>Comparateur de garages</h1>
+  <p>Trouvez le meilleur prix près de chez vous</p>
 </header>
 
 <div class="container">
-  <div class="search">
+
+  <div class="search-box">
     <input id="city" placeholder="Ville">
-    <input id="service" placeholder="Service (vidange, frein...)">
-    <button onclick="search()">Rechercher</button>
+    <select id="service">
+      <option value="">Tous services</option>
+      <option value="vidange">Vidange</option>
+      <option value="frein">Frein</option>
+      <option value="pneu">Pneu</option>
+    </select>
+    <button class="btn-search" onclick="search()">Rechercher</button>
   </div>
 
   <div id="results"></div>
+
 </div>
 
 <script>
-  const garages = [
-    { id: 1, name: "Garage Auto Plus", city: "Bordeaux", service: "vidange", price: 79 },
-    { id: 2, name: "Speed Car", city: "Bordeaux", service: "frein", price: 120 },
-    { id: 3, name: "MecaPro", city: "Paris", service: "vidange", price: 90 }
-  ];
+  // Simulation API (remplaçable par backend réel)
+  async function fetchGarages() {
+    return [
+      { id: 1, name: "Garage Premium", city: "Bordeaux", service: "vidange", price: 79, rating: 4.5 },
+      { id: 2, name: "Auto Express", city: "Bordeaux", service: "frein", price: 120, rating: 4.2 },
+      { id: 3, name: "Top Garage", city: "Paris", service: "pneu", price: 60, rating: 4.8 }
+    ];
+  }
 
-  function search() {
+  async function search() {
     const city = document.getElementById("city").value.toLowerCase();
     const service = document.getElementById("service").value.toLowerCase();
 
+    const garages = await fetchGarages();
+
     const filtered = garages.filter(g =>
       (!city || g.city.toLowerCase().includes(city)) &&
-      (!service || g.service.toLowerCase().includes(service))
+      (!service || g.service.includes(service))
     );
 
     displayResults(filtered);
@@ -103,14 +128,21 @@ SIMPLE VROOMLY-STYLE WEBSITE (HTML + CSS + JS)
     const container = document.getElementById("results");
     container.innerHTML = "";
 
+    if (data.length === 0) {
+      container.innerHTML = "<p>Aucun garage trouvé</p>";
+      return;
+    }
+
     data.forEach(g => {
       const div = document.createElement("div");
       div.className = "card";
 
       div.innerHTML = `
         <h2>${g.name}</h2>
-        <p>${g.city}</p>
-        <p>${g.service} - ${g.price}€</p>
+        <p>📍 ${g.city}</p>
+        <p>🔧 ${g.service}</p>
+        <p>💰 ${g.price}€</p>
+        <p class="rating">⭐ ${g.rating}</p>
         <button class="reserve" onclick="reserve(${g.id})">Réserver</button>
       `;
 
@@ -119,7 +151,10 @@ SIMPLE VROOMLY-STYLE WEBSITE (HTML + CSS + JS)
   }
 
   function reserve(id) {
-    alert("Réservation confirmée pour le garage ID: " + id);
+    const date = prompt("Choisissez une date (YYYY-MM-DD)");
+    if (!date) return;
+
+    alert("Réservation confirmée !\nGarage ID: " + id + "\nDate: " + date);
   }
 </script>
 
@@ -127,11 +162,16 @@ SIMPLE VROOMLY-STYLE WEBSITE (HTML + CSS + JS)
 </html>
 
 <!-- ==========================
-COMMENT UTILISER
+PRO NEXT STEPS
 ========================== -->
 
 <!--
-1. Copie ce code dans un fichier : index.html
-2. Ouvre-le dans ton navigateur
+Pour passer en VRAI business :
+
+1. Remplacer fetchGarages() par API réelle (Node.js / Firebase)
+2. Ajouter base de données (MongoDB)
+3. Ajouter Stripe pour paiement
+4. Ajouter comptes utilisateurs
+5. Héberger (Vercel / OVH)
 
 -->
