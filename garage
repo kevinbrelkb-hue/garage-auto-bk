@@ -27,7 +27,7 @@
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--font-body);color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
-
+ 
 /* NAV */
 nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5vw;display:flex;align-items:center;justify-content:space-between;height:68px}
 .logo{font-family:var(--font-title);font-weight:800;font-size:21px;color:var(--navy);text-decoration:none;display:flex;align-items:center;gap:9px}
@@ -38,7 +38,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-
 .nav-links a:hover{color:var(--teal)}
 .nav-cta{background:var(--teal);color:white!important;padding:9px 20px;border-radius:8px;font-weight:500;transition:background .2s!important}
 .nav-cta:hover{background:#15685A!important}
-
+ 
 /* HERO */
 .hero{background:var(--navy);padding:72px 5vw 0;overflow:hidden;position:relative}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(26,127,110,.22) 0%,transparent 70%);pointer-events:none}
@@ -76,18 +76,18 @@ nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-
 .mc-sub{font-size:12px;color:var(--muted)}
 .mc-stars{color:var(--accent);font-size:12px}
 .mc-badge{background:var(--teal-light);color:var(--teal);font-size:11px;font-weight:500;padding:3px 8px;border-radius:100px}
-
+ 
 /* BRANDS */
 .brands{border-bottom:1px solid var(--border);padding:22px 5vw;background:var(--bg);display:flex;align-items:center;justify-content:center;gap:44px;flex-wrap:wrap}
 .bl{font-family:var(--font-title);font-weight:700;font-size:14px;color:#B0C4CC;letter-spacing:.5px}
-
+ 
 /* SECTIONS */
 section{padding:76px 5vw}
 .sl{font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
 .st{font-family:var(--font-title);font-size:clamp(24px,3vw,36px);font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:14px}
 .ssub{font-size:17px;color:var(--muted);max-width:540px}
 .sh{margin-bottom:52px}
-
+ 
 /* SERVICES */
 .srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .srv-card{background:white;border:1px solid var(--border);border-radius:var(--r);padding:26px 20px;text-align:center;cursor:pointer;transition:all .2s}
@@ -95,7 +95,7 @@ section{padding:76px 5vw}
 .srv-ico{font-size:34px;margin-bottom:12px}
 .srv-name{font-family:var(--font-title);font-weight:600;font-size:14px;color:var(--navy);margin-bottom:5px}
 .srv-count{font-size:12px;color:var(--muted)}
-
+ 
 /* HOW */
 .how{background:var(--bg)}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1100px;margin:0 auto}
@@ -107,7 +107,7 @@ section{padding:76px 5vw}
 .step p{font-size:15px;color:var(--muted);line-height:1.6}
 .step-arr{position:absolute;right:-18px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:white;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--teal);font-size:16px;z-index:2}
 .step:last-child .step-arr{display:none}
-
+ 
 /* GARAGES */
 .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
 .fb{padding:7px 17px;border-radius:100px;border:1.5px solid var(--border);background:white;color:var(--muted);font-family:var(--font-body);font-size:14px;cursor:pointer;transition:all .2s}
@@ -141,7 +141,7 @@ section{padding:76px 5vw}
 .cprice strong{color:var(--text);font-size:14px}
 .ccta{background:var(--navy);color:white;border:none;border-radius:7px;padding:8px 16px;font-family:var(--font-body);font-size:13px;font-weight:500;cursor:pointer;transition:background .2s}
 .ccta:hover{background:var(--teal)}
-
+ 
 /* DEVIS */
 .devis-section{background:var(--bg)}
 .devis-wrap{max-width:700px;margin:0 auto}
@@ -197,7 +197,7 @@ section{padding:76px 5vw}
 .loading-box{text-align:center;padding:40px 0;color:var(--muted);font-size:14px}
 .spin{width:32px;height:32px;border:2px solid var(--border);border-top-color:var(--teal);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 14px}
 @keyframes spin{to{transform:rotate(360deg)}}
-
+ 
 /* TRUST */
 .trust{background:var(--navy)}
 .trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;max-width:1100px;margin:0 auto}
@@ -215,7 +215,7 @@ section{padding:76px 5vw}
 .rev-av{width:36px;height:36px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:white}
 .rev-name{font-weight:500;font-size:14px;color:white}
 .rev-meta{font-size:12px;color:rgba(255,255,255,.4)}
-
+ 
 /* CTA BAND */
 .cta-band{background:var(--teal);padding:64px 5vw;text-align:center}
 .cta-band h2{font-family:var(--font-title);font-size:clamp(22px,3vw,38px);font-weight:800;color:white;margin-bottom:14px}
@@ -225,7 +225,7 @@ section{padding:76px 5vw}
 .btn-w:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
 .btn-gh{background:transparent;color:white;border:2px solid rgba(255,255,255,.5);border-radius:9px;padding:13px 30px;font-family:var(--font-body);font-size:15px;font-weight:500;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
 .btn-gh:hover{border-color:white;background:rgba(255,255,255,.1)}
-
+ 
 /* FOOTER */
 footer{background:var(--navy);padding:56px 5vw 28px;border-top:1px solid rgba(255,255,255,.08)}
 .fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;max-width:1100px;margin:0 auto 44px}
@@ -241,7 +241,7 @@ footer{background:var(--navy);padding:56px 5vw 28px;border-top:1px solid rgba(25
 .view-more{text-align:center;margin-top:36px}
 .btn-ol{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--navy);color:var(--navy);background:transparent;border-radius:9px;padding:12px 26px;font-family:var(--font-body);font-size:15px;font-weight:500;cursor:pointer;text-decoration:none;transition:all .2s}
 .btn-ol:hover{background:var(--navy);color:white}
-
+ 
 @media(max-width:900px){
   .hero-inner{grid-template-columns:1fr}
   .hero-right{display:none}
@@ -262,7 +262,7 @@ footer{background:var(--navy);padding:56px 5vw 28px;border-top:1px solid rgba(25
 </style>
 </head>
 <body>
-
+ 
 <!-- NAV -->
 <nav>
   <a href="#" class="logo">
@@ -278,7 +278,7 @@ footer{background:var(--navy);padding:56px 5vw 28px;border-top:1px solid rgba(25
     <a href="#devis" class="nav-cta">Devis gratuit</a>
   </div>
 </nav>
-
+ 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-inner">
@@ -336,14 +336,14 @@ footer{background:var(--navy);padding:56px 5vw 28px;border-top:1px solid rgba(25
     </div>
   </div>
 </div>
-
+ 
 <!-- BRANDS -->
 <div class="brands">
   <span style="font-size:13px;color:var(--muted)">Toutes marques :</span>
   <span class="bl">RENAULT</span><span class="bl">PEUGEOT</span><span class="bl">CITROËN</span>
   <span class="bl">VW</span><span class="bl">FIAT</span><span class="bl">FORD</span><span class="bl">OPEL</span>
 </div>
-
+ 
 <!-- SERVICES -->
 <section id="services" style="background:white">
   <div style="max-width:1100px;margin:0 auto">
@@ -363,7 +363,7 @@ footer{background:var(--navy);padding:56px 5vw 28px;border-top:1px solid rgba(25
     </div>
   </div>
 </section>
-
+ 
 <!-- HOW IT WORKS -->
 <section class="how">
   <div style="max-width:1100px;margin:0 auto">
@@ -395,7 +395,7 @@ footer{background:var(--navy);padding:56px 5vw 28px;border-top:1px solid rgba(25
     </div>
   </div>
 </section>
-
+ 
 <!-- ZONES -->
 <section id="garages" style="background:white">
   <div style="max-width:1100px;margin:0 auto">
@@ -414,7 +414,7 @@ footer{background:var(--navy);padding:56px 5vw 28px;border-top:1px solid rgba(25
     </div>
   </div>
 </section>
-
+ 
 <!-- DEVIS IA -->
 <section class="devis-section" id="devis">
   <div style="max-width:1100px;margin:0 auto">
@@ -434,7 +434,7 @@ footer{background:var(--navy);padding:56px 5vw 28px;border-top:1px solid rgba(25
           <div class="sp" id="sp2">2 · Prestation</div>
           <div class="sp" id="sp3">3 · Résultat</div>
         </div>
-
+ 
         <!-- STEP 1 -->
         <div id="ds1">
           <div class="dfield">
@@ -466,7 +466,7 @@ footer{background:var(--navy);padding:56px 5vw 28px;border-top:1px solid rgba(25
           </div>
           <button class="dbtn" onclick="dStep2()">Continuer →</button>
         </div>
-
+ 
         <!-- STEP 2 -->
         <div id="ds2" style="display:none">
           <div class="dfield">
@@ -495,7 +495,7 @@ footer{background:var(--navy);padding:56px 5vw 28px;border-top:1px solid rgba(25
           <button class="dbtn" id="btnGen" onclick="genDevis()">Générer le devis IA →</button>
           <button class="dbtn dbtn-sec" onclick="dBack()" style="margin-top:8px">← Retour</button>
         </div>
-
+ 
         <!-- STEP 3 -->
         <div id="ds3" style="display:none">
           <div id="dLoading" class="loading-box">
@@ -509,7 +509,7 @@ footer{background:var(--navy);padding:56px 5vw 28px;border-top:1px solid rgba(25
     </div>
   </div>
 </section>
-
+ 
 <!-- TRUST / AVIS -->
 <section class="trust" id="avis">
   <div class="trust-grid">
@@ -539,7 +539,7 @@ footer{background:var(--navy);padding:56px 5vw 28px;border-top:1px solid rgba(25
     </div>
   </div>
 </section>
-
+ 
 <!-- CTA -->
 <div class="cta-band">
   <h2>Prêt à prendre rendez-vous ?</h2>
@@ -549,7 +549,7 @@ footer{background:var(--navy);padding:56px 5vw 28px;border-top:1px solid rgba(25
     <a href="tel:+33600000000" class="btn-gh">Appeler Kevin</a>
   </div>
 </div>
-
+ 
 <!-- FOOTER -->
 <footer>
   <div class="fg">
@@ -592,14 +592,14 @@ footer{background:var(--navy);padding:56px 5vw 28px;border-top:1px solid rgba(25
     </div>
   </div>
 </footer>
-
+ 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 let selPrest = '';
-
+ 
 function scrollDevis() {
   document.getElementById('devis').scrollIntoView({behavior:'smooth'});
 }
-
+ 
 function quickSearch(el) {
   document.getElementById('srchPrest').value = el.textContent;
   scrollDevis();
@@ -609,7 +609,7 @@ function quickSearch(el) {
     });
   }, 600);
 }
-
+ 
 function selectService(name) {
   scrollDevis();
   setTimeout(() => {
@@ -618,13 +618,13 @@ function selectService(name) {
     });
   }, 600);
 }
-
+ 
 function selC(el) {
   document.querySelectorAll('#pChips .chip').forEach(c => c.classList.remove('sel'));
   el.classList.add('sel');
   selPrest = el.textContent.trim();
 }
-
+ 
 function dStep2() {
   if (!document.getElementById('d-marque').value || !document.getElementById('d-modele').value) {
     alert('Merci de renseigner la marque et le modèle.');
@@ -635,14 +635,14 @@ function dStep2() {
   document.getElementById('sp1').className = 'sp done';
   document.getElementById('sp2').className = 'sp act';
 }
-
+ 
 function dBack() {
   document.getElementById('ds2').style.display = 'none';
   document.getElementById('ds1').style.display = 'block';
   document.getElementById('sp1').className = 'sp act';
   document.getElementById('sp2').className = 'sp';
 }
-
+ 
 async function genDevis() {
   if (!selPrest) { alert('Veuillez sélectionner une prestation.'); return; }
   const marque = document.getElementById('d-marque').value;
@@ -652,7 +652,7 @@ async function genDevis() {
   const km = document.getElementById('d-km').value;
   const details = document.getElementById('d-details').value;
   const prenom = document.getElementById('d-prenom').value;
-
+ 
   document.getElementById('ds2').style.display = 'none';
   document.getElementById('ds3').style.display = 'block';
   document.getElementById('dLoading').style.display = 'block';
@@ -660,20 +660,20 @@ async function genDevis() {
   document.getElementById('btnReset').style.display = 'none';
   document.getElementById('sp2').className = 'sp done';
   document.getElementById('sp3').className = 'sp act';
-
+ 
   const prompt = `Tu es l'assistant de devis de Garage Auto BK, mécanicien mobile indépendant basé à Cussac-Fort-Médoc dans le Médoc (Gironde). Tu génères un devis estimatif professionnel.
-
+ 
 Véhicule : ${marque} ${modele}${annee ? ' ' + annee : ''}${moteur ? ' · ' + moteur : ''}
 Kilométrage : ${km || 'non précisé'}
 Prestation : ${selPrest}
 Détails : ${details || 'aucun'}
 ${prenom ? 'Client : ' + prenom : ''}
-
+ 
 Réponds UNIQUEMENT avec un JSON valide, sans texte avant ni après, sans backticks :
 {"salutation":"phrase courte si prénom sinon vide","prestation":"nom exact","prix_min":entier,"prix_max":entier,"duree":"ex: 1h à 2h","inclus":["3 à 5 éléments inclus"],"conseils":"1 ou 2 phrases de conseil pour ce véhicule","urgence":"faible|modérée|élevée","note_urgence":"phrase courte","next_step":"invitation à confirmer le rdv"}
-
+ 
 Prix réalistes pour un mécanicien mobile indépendant en France (légèrement inférieurs au garage classique). Déplacement inclus dans le Médoc.`;
-
+ 
   try {
     const r = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -693,12 +693,12 @@ Prix réalistes pour un mécanicien mobile indépendant en France (légèrement 
     document.getElementById('btnReset').style.display = 'block';
   }
 }
-
+ 
 function urgBg(u){return u==='élevée'?'#FFF0F0':u==='modérée'?'#FFFBF0':'#E1F5EE'}
 function urgBo(u){return u==='élevée'?'#F09595':u==='modérée'?'#FAC775':'#9FE1CB'}
 function urgTx(u){return u==='élevée'?'#791F1F':u==='modérée'?'#633806':'#085041'}
 function urgIco(u){return u==='élevée'?'⚠️':u==='modérée'?'⚡':'✅'}
-
+ 
 function showResult(d, marque, modele, annee) {
   document.getElementById('dLoading').style.display = 'none';
   const el = document.getElementById('dResult');
@@ -731,7 +731,7 @@ function showResult(d, marque, modele, annee) {
   `;
   document.getElementById('btnReset').style.display = 'block';
 }
-
+ 
 function dReset() {
   ['d-marque','d-modele','d-annee','d-moteur','d-km','d-details','d-prenom'].forEach(id => {
     const el = document.getElementById(id);
